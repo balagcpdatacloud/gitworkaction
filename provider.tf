@@ -1,4 +1,4 @@
 provider "google" {
-  project = var.project_id
-  region  = var.region
+  project = "datacloud-346017"
+  region  = "europe-west1"
 }

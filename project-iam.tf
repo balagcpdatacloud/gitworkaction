@@ -12,6 +12,6 @@ locals {
 resource "google_project_iam_member" "cicd_role_iam" {
   for_each = toset(local.cicd_roles)
   role     = each.value
-  project  = datacloud-34607
+  project  = "datacloud-346017"
   member   = "serviceAccount:$(data.google_service_account.ci-deploy-account.email)"
 }
