@@ -2,6 +2,7 @@ data "google_service_account" "ci-deploy-account" {
   account_id = "github-actions-service-account"
 }
 
+
 locals {
   cicd_roles = [
     "roles/logging.admin",
