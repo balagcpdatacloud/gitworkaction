@@ -46,7 +46,7 @@ jobs:
       - name: Terraform Init
         shell: bash
         run: |
-          terraform init -reconfigure -backend-config=prefix=dev
+          terraform init -reconfigure
       - name: Terraform validate
         run: terraform validate -no-color
       - name: Terraform plan
