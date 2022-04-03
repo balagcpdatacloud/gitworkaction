@@ -38,7 +38,7 @@ jobs:
           # Replace with your GitHub Service Account
           service_account: "github-actions-service-account@datacloud-346017.iam.gserviceaccount.com"
       - name: "setup Terraform"
-        uses: hasicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.7
       - name: Terraform Format Check
