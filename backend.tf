@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "datacloud-terraform-bucket-new1"
+    bucket = "datacloud-terraform-bucket-16apr"
     prefix = "dev"
   }
 
