@@ -1,28 +1,5 @@
-variable "project_id" {
-  description = "Google Project ID."
-  type        = string
-}
-
-variable "bucket_name" {
-  description = "GCS Bucket name. Value should be unique ."
-  type        = string
-}
-
-variable "region" {
-  description = "Google Cloud region"
-  type        = string
-  default     = "europe-west2"
-}
-
-variable "suffix" {
-  description = "suffix"
-  type        = string
-  default     = "dev"
-}
-
-variable "prefix" {
-  description = "prefix"
-  type        = string
-  default     = "datacloud"
-}
+project_id = "datacloud-346017"
+suffix     = dev
+prefix     = datacloud
+bucket_name = "my-bucket-6017"
 
