@@ -5,15 +5,17 @@ name: CD
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [githubaction]
   pull_request:
-    branches: [main]
+    branches: [githubaction]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # Find the branch name and create environment file
+  
   # This workflow contains a single job called "deploy"
   deploy:
     # The type of runner that the job will run on
@@ -24,9 +26,10 @@ jobs:
       contents: "read"
       id-token: "write"
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that wll be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+   
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - id: "auth"
@@ -37,3 +40,27 @@ jobs:
           workload_identity_provider: "projects/915181581756/locations/global/workloadIdentityPools/github-identity-pool/providers/github"
           # Replace with your GitHub Service Account
           service_account: "github-actions-service-account@datacloud-346017.iam.gserviceaccount.com"
+      - name: "setup Terraform"
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.7
+      - name: "setup environemnt based on branch"
+        shell: bash
+        run: |
+          echo "Environment is : $_BASE_BRANCH" 
+      - name: Terraform Format Check
+        run: terraform fmt -check
+      - name: Terraform Init
+        shell: bash
+        run: |
+          terraform init -backend-config=prefix=dev
+      - name: Terraform validate
+        run: terraform validate -no-color
+      - name: Terraform plan
+        shell: bash
+        run: |
+           terraform plan -var-file=dev.tfvars -out=deployment.plan
+      - name: Terraform apply
+        shell: bash
+        run: |
+           terraform apply deployment.plan
