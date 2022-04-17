@@ -1,5 +1,5 @@
 project_id  = "datacloud-346017"
 suffix      = dev
 prefix      = datacloud
-bucket_name = "my-bucket-6017"
+bucket_name = "my-dev-bucket"
 
