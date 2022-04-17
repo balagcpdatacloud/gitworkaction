@@ -53,3 +53,7 @@ jobs:
         shell: bash
         run: |
            terraform plan -var-file=dev.tfvars -out=deployment.plan
+      - name: Terraform apply
+        shell: bash
+        run: |
+           terraform apply deployment.plan
