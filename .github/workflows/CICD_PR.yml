@@ -4,7 +4,7 @@ name: CD
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
+  pull_request:
     branches: [dev,test]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -62,7 +62,4 @@ jobs:
         shell: bash
         run: |
            terraform plan -var-file=${{steps.extract_branch.outputs.branch}}.tfvars -out=deployment.plan
-      - name: Terraform apply
-        shell: bash
-        run: |
-           terraform apply deployment.plan
+      
