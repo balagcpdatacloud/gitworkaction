@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "datacloud-terraform-statee-file"
+    bucket = "datacloud-terraform-state-file"
     prefix = "dev"
   }
 
