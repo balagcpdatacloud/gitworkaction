@@ -56,10 +56,3 @@ jobs:
         shell: bash
         run: |
           terraform init -backend-config=prefix=${{steps.extract_branch.outputs.branch}}
-      - name: Terraform validate
-        run: terraform validate -no-color
-      - name: Terraform plan
-        shell: bash
-        run: |
-           terraform plan -var-file=${{steps.extract_branch.outputs.branch}}.tfvars -out=deployment.plan
- 
